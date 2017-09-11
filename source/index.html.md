@@ -1,10 +1,7 @@
 ---
-title: API Reference
+title: POST-It App
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
@@ -19,221 +16,535 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+**`PostIt`** is a simple application that allows friends and colleagues create groups for notifications. It allows a person post notifications to everyone in his group by sending a message once.
+It has the following features:
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+* Creating of an account
+* Signing in a registerd user
+* Sign-up and Sign-in through google authentication
+* Reset password
+* Create Groups and be added to groups by other users
+* Add users to the group
+* View group members
+* Post messages in member groups in real-time
+* Upload profile pictures
+* Archive Messages and view Archived messages
+* Recieve in-app, email and sms notification when a message is posted in the group you belong to, based on the message's priority level
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Installation and Setup
 
-# Authentication
+*  Clone this repository on that directory.
 
-> To authorize, use this code:
+**`Using SSH:`**
 
-```ruby
-require 'kittn'
+`git clone git@github.com:ayodelevm/PostIt.git`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+**`Using HTTPS:`**
+
+`git clone https://github.com/ayodelevm/PostIt.git`
+
+*  Navigate to the repo's folder on your computer `cd PostIt/`
+* Install the app's backend dependencies using `npm install`
+
+## System Requirements to Note
+* In order to begin using, you need to have __nodeJs__ and **npm** installed on your system.
+* For database you need to install __PostGres__ locally or setup with an online client eg. **ElephantSql**
+* Create two (2) databases one for __development__ and the other for **testing**
+* Change database config variables in the config.json file, based on your own db set-up
+* In other to interact effectively with endpoints, install and use __Postman__
+
+# Endpoints Breakdown
+
+## Authentication Endpoints
+
+## `Sign-up [POST - /api/v1/user/register]`
+> Request Body
+
+```json
+{
+  "fullname": "Toria Tobias",
+  "username": "toria",
+  "password": "ay324ab",
+  "passwordConfirmation": "ay324ab",
+  "email": "ay@gmail.com",
+  "telephone": "08087584922",
+}
 ```
 
-```python
-import kittn
+This endpoint creates a new user
 
-api = kittn.authorize('meowmeowmeow')
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+## `Login [POST - /api/v1/user/login]`
+> Request Body
+
+```json
+{
+  "userIdentifier": "toria" or "ay@gmail.com",
+  "password": "ay324ab"
+}
 ```
 
-```javascript
-const kittn = require('kittn');
+This endpoint verifies if a user is registered and then logs the user if verified or throws the appropriate error if not verified.
+You can login with either username or email
 
-let api = kittn.authorize('meowmeowmeow');
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+## `Forgot Password [POST - /api/v1/user/forgotpassword]`
+> Request Body
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+```json
+{
+  "email": "ay@gmail.com"
+}
+```
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+This endpoint handles verifying that a user who wants to reset password is registered and then sends a reset password link to the users email
 
-`Authorization: meowmeowmeow`
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  success: "Please check your mail for the reset link!"
+}
+```
+
+## `Reset Password [PUT - /api/v1/resetpassword]`
+> Request Body
+
+```json
+{
+  "password": "newpassword"
+  "passwordConfirmation": "newpassword"
+}
+```
+
+Upon reception of an email to reset password, this method receives the new password entered by the user and replaces the user's old password with the nnew one
+
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  success: "password reset successful, Please login to continue!"
+}
+```
+
+## `Google Signup [POST - /api/v1/user/googlesignup]`
+> Request Body
+
+```json
+{
+  "id_token": "CDjdljdf8yg8ge092874hikudjlcedcUIYHCG.78ghGKcjdsgkj"
+}
+```
+
+Upon verification of user's email by google, this endpoint receives the user's `id_token` issued by google, verifies the token and decodes it, checks if the user has previously signed-up with google in the past, if not, it saves the users detail into db including the user's unique `subject id` and then generates a new token for the user, if yes, sends an error message teeling the user he's signed-up before and asking the user to sign-in with google instead
+
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
+```
+
+## `Google Sign-in [POST - /api/v1/user/googlelogin]`
+> Request Body
+
+```json
+{
+  "id_token": "CDjdljdf8yg8ge092874hikudjlcedcUIYHCG.78ghGKcjdsgkj"
+}
+```
+
+Upon verification of user's email by google, this endpoint recevies the user's `id_token` issued by google, verifies the token and decodes it, checks if the user is registered in the database, if yes, generates a new token for the user, if not, generates an error and tells the user to signup with google first
+
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
+```
+
+## `Verify User [POST - /api/v1/verifyuser]`
+> Request Body
+
+```json
+{
+  "token": "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
+```
+
+Upon browser refresh, or re-opening of the page, this endpoint verifies if the user's token is still valid if not, an error response is generated
+
+
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  success: "user verification successful!",
+  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+}
+```
+
+## User Endpoints
+
+## `Get All Registered Users [GET - /api/v1/users]`
+> Sample Response
+
+```json
+{
+  success: "Successful.",
+  users: [{
+    id: "2"
+    username: "toria",
+    profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
+    fullname: "Toria Tobias",
+    email: "ay@gmail.com",
+    telephone: "08087584922"
+  }, {
+    id: "3"
+    username: "jide",
+    profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
+    fullname: "Jide Tobias",
+    email: "jide@gmail.com",
+    telephone: "09074384397"
+  }]
+}
+```
+
+This endpoint fetches all registered users
+
+**`Status Code [200]`**
+
+## `Get Group Members [GET - /api/v1/group/:id/users]`
+> Sample Response
+
+```json
+{
+  success: "Successful.",
+  foundGroupAndUsers: {
+    name: "New Group",
+    description: "It's a new group",
+    id: "7",
+    ownerId: "4",
+    createdAt: "017-09-10T16:29:08.087Z",
+    Users: [{
+      id: "2"
+      username: "toria",
+      profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
+      fullname: "Toria Tobias",
+      email: "ay@gmail.com",
+      telephone: "08087584922"
+    }, {
+      id: "3"
+      username: "jide",
+      profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
+      fullname: "Jide Tobias",
+      email: "jide@gmail.com",
+      telephone: "09074384397"
+    }]
+  }
+}
+```
+
+This endpoint fetches a group and all it's members
+
+
+**`Status Code [200]`**
+
+## `Add New Users To Group [POST - /api/v1/group/:id/user]`
+> Request Body
+
+```json
+{
+  "newGroupMembers": ["jide", "toria"]
+}
+```
+
+This endpoint handles adding new users to a group
+
+
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  success: "new users added successfully",
+  addedUsers: [{
+      GroupId: "2"
+      UserId: "4",
+      createdAt: "017-09-10T16:29:08.087Z",
+      updatedAt: "017-09-10T16:29:08.087Z"
+    }, {
+      GroupId: "3"
+      UserId: "1",
+      createdAt: "017-09-10T16:29:08.087Z",
+      updatedAt: "017-09-10T16:29:08.087Z"
+    }]
+}
+```
+
+## `Update User Details [PUT - /api/v1/user/:id/edit]`
+> Request body
+
+```json
+{
+  "profileImage": "https://www.conncoll.edu/media/major-images/Art.jpg"
+}
+```
+
+This endpoint handles updating a user's data. Used specifically in this project for handling uploading a new profile picture
+
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  success: "User details updated successfully.",
+}
+```
+
+## Group Endpoints
+
+## `Get One User And All His Groups [GET - /api/v1/groups]`
+> Sample Response
+
+```json
+{
+  success: 'Successful.',
+  foundUserAndGroups: {
+    id: "2"
+    username: "toria",
+    profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
+    fullname: "Toria Tobias",
+    email: "ay@gmail.com",
+    telephone: "08087584922",
+    Groups: [{
+      name: "New Group",
+      description: "It's a new group",
+      id: "7",
+      ownerId: "4",
+      createdAt: "017-09-10T16:29:08.087Z",
+    }, {
+      name: "A Second Group",
+      description: "A second for demo",
+      id: "8",
+      ownerId: "4",
+      createdAt: "017-09-10T16:29:08.087Z",
+    }]
+  }
+}
+```
+
+This endpoint fetches one user and all the group he belongs to
+
+**`Status Code [200]`**
+
+## `Create A New Group [POST - /api/v1/group]`
+> Request Body
+
+```json
+{
+  "name": "Learn Python",
+  "description": "We teach python!",
+  "initialGroupMembers": ["toria", "jide"]
+}
+```
+
+This endpoint handles creating a new group and adding new users to the group at the point of creating the group
+
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  success: "New group created successfully.",
+  newGroup: {
+    name: "Learn Python",
+    description: "We teach python!",
+    id: "9",
+    ownerId: "4",
+    createdAt: "017-09-10T16:29:08.087Z",
+  }
+}
+```
+
+## Other Group Endpoints
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<b>Note:</b> Provision were made for the following <b>group endpoints</b> but were not implemented in the client-side for this sprint/ version
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+## `Get One Group To Edit [GET - /api/v1/group/:id/edit]`
+> Sample Response
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  success: "Successful.",
+  foundGroup: {
+    name: "Learn Python",
+    description: "We teach python!",
+    id: "9",
+    UserId: "4",
+    createdAt: "017-09-10T16:29:08.087Z",
   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint handles fetching a group data for editing
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+**`Status Code [200]`**
 
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+## `Update One Group [PUT - /api/v1/group/:id/edit]`
+> Request Body
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "name": "Learn Pythonic- Python"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint handles updating a group's details
 
-### HTTP Request
+**`Status Code [200]`**
 
-`DELETE http://example.com/kittens/<ID>`
+> Sample Response
 
-### URL Parameters
+```json
+{
+  success: "Group details updated successfully."
+}
+```
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## `Delete A Group [DELETE - /api/v1/group/:id/delete]`
+> Sample Response
 
+```json
+{
+  success: "Group deleted successfully."
+}
+```
+
+This endpoint handles deleting a group along with it's messages and users
+
+**`Status Code [200]`**
+
+## Message Endpoints
+
+## `Get One Group And It's Messages [GET - /api/v1/group/:id/messages]`
+> Sample Response
+
+```json
+{
+  success: "Successful.",
+  foundGroupAndMessages: {
+    name: "New Group",
+    description: "It's a new group",
+    id: "7",
+    ownerId: "4",
+    createdAt: "017-09-10T16:29:08.087Z",
+    Users: [{
+      id: "2"
+      GroupId: "2"
+      ownerId: "4",
+      createdAt: "017-09-10T16:29:08.087Z",
+      message: "Hello World!",
+      priority: "Normal"
+    }, {
+      id: "3"
+      GroupId: "3"
+      ownerId: "5",
+      createdAt: "017-09-10T16:29:08.087Z",
+      message: "Welcome to this group!",
+      priority: "Urgent"
+    }]
+  }
+}
+```
+
+This endpoint handles getting one group and all it's messages. It accepts a query parameter `?archived=false` to retrieve only messages that have not been archived and `?archived=true` to retrieve only messages that have been archived
+
+**`Status Code [200]`**
+
+
+## `Create A New Message [POST - /api/v1/group/:id/message]`
+> Request Body
+
+```json
+{
+  "message": "Welcome to this group"
+  "priority": "Critical"
+}
+```
+
+This endpoint handles posting (creating) a new message to a group, if you are a member of the group
+
+**`Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  success: "New message added successfully.",
+  createdMessage: {
+    id: "4"
+    GroupId: "3"
+    ownerId: "5",
+    createdAt: "017-09-10T16:29:08.087Z",
+    message: "Welcome to this group!",
+    priority: "Urgent"
+  }
+}
+```
+
+## `Archive All Messages [PUT - /api/v1/group/:id/archivemessages]`
+> Request Body
+
+```json
+{
+  "messageIds": [1, 3, 2, 5]
+}
+```
+
+This method handles archiving all the messages in a group 
+
+**`Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  success: "Messages have been archived successfully",
+}
+```
