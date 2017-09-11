@@ -548,3 +548,18 @@ This method handles archiving all the messages in a group
   success: "Messages have been archived successfully",
 }
 ```
+
+## Note
+
+<aside class="notice">
+In using this endpoints, the following should be noted: <br>
+<ul>
+  <li> An authorization header needs to be attached when using users, groups and messages endpoints and including when verifying user. The format is:
+  <b><i>{ Authorization: "Bearer `${token}` }</i></b></li>
+  <li> You can only add users to a group you created</li>
+  <li> You can only update your own user details</li>
+  <li> You can only archive messages in a group you created</li>
+  <li> You can only edit a group you created</li>
+  <li> You can only delete a group you created</li>
+</ul>
+</aside>
