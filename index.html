@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>POST-It App</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,9 +211,6 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
@@ -225,24 +222,92 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#installation-and-setup" class="toc-h1 toc-link" data-title="Installation and Setup">Installation and Setup</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                    <a href="#system-requirements-to-note" class="toc-h2 toc-link" data-title="Installation and Setup">System Requirements to Note</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#endpoints-breakdown" class="toc-h1 toc-link" data-title="Endpoints Breakdown">Endpoints Breakdown</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication-endpoints" class="toc-h2 toc-link" data-title="Endpoints Breakdown">Authentication Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#code-sign-up-post-api-v1-user-register-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Sign-up [POST - /api/v1/user/register]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-login-post-api-v1-user-login-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Login [POST - /api/v1/user/login]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-forgot-password-post-api-v1-user-forgotpassword-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Forgot Password [POST - /api/v1/user/forgotpassword]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-reset-password-put-api-v1-resetpassword-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Reset Password [PUT - /api/v1/resetpassword]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-google-signup-post-api-v1-user-googlesignup-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Google Signup [POST - /api/v1/user/googlesignup]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-google-sign-in-post-api-v1-user-googlelogin-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Google Sign-in [POST - /api/v1/user/googlelogin]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-verify-user-post-api-v1-verifyuser-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Verify User [POST - /api/v1/verifyuser]</code></a>
+                  </li>
+                  <li>
+                    <a href="#user-endpoints" class="toc-h2 toc-link" data-title="Endpoints Breakdown">User Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#code-get-all-registered-users-get-api-v1-users-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Get All Registered Users [GET - /api/v1/users]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-get-group-members-get-api-v1-group-id-users-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Get Group Members [GET - /api/v1/group/:id/users]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-add-new-users-to-group-post-api-v1-group-id-user-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Add New Users To Group [POST - /api/v1/group/:id/user]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-update-user-details-put-api-v1-user-id-edit-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Update User Details [PUT - /api/v1/user/:id/edit]</code></a>
+                  </li>
+                  <li>
+                    <a href="#group-endpoints" class="toc-h2 toc-link" data-title="Endpoints Breakdown">Group Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#code-get-one-user-and-all-his-groups-get-api-v1-groups-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Get One User And All His Groups [GET - /api/v1/groups]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-create-a-new-group-post-api-v1-group-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Create A New Group [POST - /api/v1/group]</code></a>
+                  </li>
+                  <li>
+                    <a href="#other-group-endpoints" class="toc-h2 toc-link" data-title="Endpoints Breakdown">Other Group Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#code-get-one-group-to-edit-get-api-v1-group-id-edit-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Get One Group To Edit [GET - /api/v1/group/:id/edit]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-update-one-group-put-api-v1-group-id-edit-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Update One Group [PUT - /api/v1/group/:id/edit]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-delete-a-group-delete-api-v1-group-id-delete-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Delete A Group [DELETE - /api/v1/group/:id/delete]</code></a>
+                  </li>
+                  <li>
+                    <a href="#message-endpoints" class="toc-h2 toc-link" data-title="Endpoints Breakdown">Message Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#code-get-one-group-and-it-39-s-messages-get-api-v1-group-id-messages-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Get One Group And It's Messages [GET - /api/v1/group/:id/messages]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-create-a-new-message-post-api-v1-group-id-message-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Create A New Message [POST - /api/v1/group/:id/message]</code></a>
+                  </li>
+                  <li>
+                    <a href="#code-archive-all-messages-put-api-v1-group-id-archivemessages-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Archive All Messages [PUT - /api/v1/group/:id/archivemessages]</code></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#error-codes" class="toc-h1 toc-link" data-title="Error Codes">Error Codes</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -254,247 +319,510 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p><strong><code>PostIt</code></strong> is a simple application that allows friends and colleagues create groups for notifications. It allows a person post notifications to everyone in his group by sending a message once.
+It has the following features:</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<ul>
+<li>Creating of an account</li>
+<li>Signing in a registerd user</li>
+<li>Sign-up and Sign-in through google authentication</li>
+<li>Reset password</li>
+<li>Create Groups and be added to groups by other users</li>
+<li>Add users to the group</li>
+<li>View group members</li>
+<li>Post messages in member groups in real-time</li>
+<li>Upload profile pictures</li>
+<li>Archive Messages and view Archived messages</li>
+<li>Recieve in-app, email and sms notification when a message is posted in the group you belong to, based on the message&#39;s priority level</li>
+</ul>
+<h1 id='installation-and-setup'>Installation and Setup</h1>
+<ul>
+<li> Clone this repository on that directory.</li>
+</ul>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p><strong><code>Using SSH:</code></strong></p>
+
+<p><code>git clone git@github.com:ayodelevm/PostIt.git</code></p>
+
+<p><strong><code>Using HTTPS:</code></strong></p>
+
+<p><code>git clone https://github.com/ayodelevm/PostIt.git</code></p>
+
+<ul>
+<li> Navigate to the repo&#39;s folder on your computer <code>cd PostIt/</code></li>
+<li>Install the app&#39;s backend dependencies using <code>npm install</code></li>
+</ul>
+<h2 id='system-requirements-to-note'>System Requirements to Note</h2>
+<ul>
+<li>In order to begin using, you need to have <strong>nodeJs</strong> and <strong>npm</strong> installed on your system.</li>
+<li>For database you need to install <strong>PostGres</strong> locally or setup with an online client eg. <strong>ElephantSql</strong></li>
+<li>Create two (2) databases one for <strong>development</strong> and the other for <strong>testing</strong></li>
+<li>Change database config variables in the config.json file, based on your own db set-up</li>
+<li>In other to interact effectively with endpoints, install and use <strong>Postman</strong></li>
+</ul>
+<h1 id='endpoints-breakdown'>Endpoints Breakdown</h1><h2 id='authentication-endpoints'>Authentication Endpoints</h2><h2 id='code-sign-up-post-api-v1-user-register-code'><code>Sign-up [POST - /api/v1/user/register]</code></h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Request Body</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Toria Tobias"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toria"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay324ab"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"passwordConfirmation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay324ab"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08087584922"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new user</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><strong><code>Status Code [201]</code></strong></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Sample Response</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-login-post-api-v1-user-login-code'><code>Login [POST - /api/v1/user/login]</code></h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Request Body</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"userIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toria"</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay324ab"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint verifies if a user is registered and then logs the user if verified or throws the appropriate error if not verified.
+You can login with either username or email</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-forgot-password-post-api-v1-user-forgotpassword-code'><code>Forgot Password [POST - /api/v1/user/forgotpassword]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles verifying that a user who wants to reset password is registered and then sends a reset password link to the users email</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please check your mail for the reset link!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-reset-password-put-api-v1-resetpassword-code'><code>Reset Password [PUT - /api/v1/resetpassword]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newpassword"</span><span class="w">
+  </span><span class="s2">"passwordConfirmation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newpassword"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon reception of an email to reset password, this method receives the new password entered by the user and replaces the user&#39;s old password with the nnew one</p>
+
+<p><strong><code>Status Code [201]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"password reset successful, Please login to continue!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-google-signup-post-api-v1-user-googlesignup-code'><code>Google Signup [POST - /api/v1/user/googlesignup]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDjdljdf8yg8ge092874hikudjlcedcUIYHCG.78ghGKcjdsgkj"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon verification of user&#39;s email by google, this endpoint receives the user&#39;s <code>id_token</code> issued by google, verifies the token and decodes it, checks if the user has previously signed-up with google in the past, if not, it saves the users detail into db including the user&#39;s unique <code>subject id</code> and then generates a new token for the user, if yes, sends an error message teeling the user he&#39;s signed-up before and asking the user to sign-in with google instead</p>
+
+<p><strong><code>Status Code [201]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-google-sign-in-post-api-v1-user-googlelogin-code'><code>Google Sign-in [POST - /api/v1/user/googlelogin]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDjdljdf8yg8ge092874hikudjlcedcUIYHCG.78ghGKcjdsgkj"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon verification of user&#39;s email by google, this endpoint recevies the user&#39;s <code>id_token</code> issued by google, verifies the token and decodes it, checks if the user is registered in the database, if yes, generates a new token for the user, if not, generates an error and tells the user to signup with google first</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-verify-user-post-api-v1-verifyuser-code'><code>Verify User [POST - /api/v1/verifyuser]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Upon browser refresh, or re-opening of the page, this endpoint verifies if the user&#39;s token is still valid if not, an error response is generated</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"user verification successful!"</span><span class="p">,</span><span class="w">
+  </span><span class="err">token</span><span class="p">:</span><span class="w"> </span><span class="s2">"kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='user-endpoints'>User Endpoints</h2><h2 id='code-get-all-registered-users-get-api-v1-users-code'><code>Get All Registered Users [GET - /api/v1/users]</code></h2>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful."</span><span class="p">,</span><span class="w">
+  </span><span class="err">users</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+    </span><span class="err">username</span><span class="p">:</span><span class="w"> </span><span class="s2">"toria"</span><span class="p">,</span><span class="w">
+    </span><span class="err">profileImage</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="err">fullname</span><span class="p">:</span><span class="w"> </span><span class="s2">"Toria Tobias"</span><span class="p">,</span><span class="w">
+    </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="err">telephone</span><span class="p">:</span><span class="w"> </span><span class="s2">"08087584922"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+    </span><span class="err">username</span><span class="p">:</span><span class="w"> </span><span class="s2">"jide"</span><span class="p">,</span><span class="w">
+    </span><span class="err">profileImage</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="err">fullname</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jide Tobias"</span><span class="p">,</span><span class="w">
+    </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="s2">"jide@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="err">telephone</span><span class="p">:</span><span class="w"> </span><span class="s2">"09074384397"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint fetches all registered users</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='code-get-group-members-get-api-v1-group-id-users-code'><code>Get Group Members [GET - /api/v1/group/:id/users]</code></h2>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful."</span><span class="p">,</span><span class="w">
+  </span><span class="err">foundGroupAndUsers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Group"</span><span class="p">,</span><span class="w">
+    </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"It's a new group"</span><span class="p">,</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+    </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+    </span><span class="err">Users</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="err">username</span><span class="p">:</span><span class="w"> </span><span class="s2">"toria"</span><span class="p">,</span><span class="w">
+      </span><span class="err">profileImage</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="err">fullname</span><span class="p">:</span><span class="w"> </span><span class="s2">"Toria Tobias"</span><span class="p">,</span><span class="w">
+      </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="err">telephone</span><span class="p">:</span><span class="w"> </span><span class="s2">"08087584922"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+      </span><span class="err">username</span><span class="p">:</span><span class="w"> </span><span class="s2">"jide"</span><span class="p">,</span><span class="w">
+      </span><span class="err">profileImage</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="err">fullname</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jide Tobias"</span><span class="p">,</span><span class="w">
+      </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="s2">"jide@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="err">telephone</span><span class="p">:</span><span class="w"> </span><span class="s2">"09074384397"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<p>This endpoint fetches a group and all it&#39;s members</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='code-add-new-users-to-group-post-api-v1-group-id-user-code'><code>Add New Users To Group [POST - /api/v1/group/:id/user]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"newGroupMembers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"jide"</span><span class="p">,</span><span class="w"> </span><span class="s2">"toria"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles adding new users to a group</p>
+
+<p><strong><code>Status Code [201]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"new users added successfully"</span><span class="p">,</span><span class="w">
+  </span><span class="err">addedUsers</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="err">GroupId</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="err">UserId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+      </span><span class="err">updatedAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">GroupId</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+      </span><span class="err">UserId</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+      </span><span class="err">updatedAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-update-user-details-put-api-v1-user-id-edit-code'><code>Update User Details [PUT - /api/v1/user/:id/edit]</code></h2>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"profileImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles updating a user&#39;s data. Used specifically in this project for handling uploading a new profile picture</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"User details updated successfully."</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='group-endpoints'>Group Endpoints</h2><h2 id='code-get-one-user-and-all-his-groups-get-api-v1-groups-code'><code>Get One User And All His Groups [GET - /api/v1/groups]</code></h2>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="err">'Successful.'</span><span class="p">,</span><span class="w">
+  </span><span class="err">foundUserAndGroups</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+    </span><span class="err">username</span><span class="p">:</span><span class="w"> </span><span class="s2">"toria"</span><span class="p">,</span><span class="w">
+    </span><span class="err">profileImage</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.conncoll.edu/media/major-images/Art.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="err">fullname</span><span class="p">:</span><span class="w"> </span><span class="s2">"Toria Tobias"</span><span class="p">,</span><span class="w">
+    </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="s2">"ay@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="err">telephone</span><span class="p">:</span><span class="w"> </span><span class="s2">"08087584922"</span><span class="p">,</span><span class="w">
+    </span><span class="err">Groups</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Group"</span><span class="p">,</span><span class="w">
+      </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"It's a new group"</span><span class="p">,</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Second Group"</span><span class="p">,</span><span class="w">
+      </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"A second for demo"</span><span class="p">,</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+      </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint fetches one user and all the group he belongs to</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='code-create-a-new-group-post-api-v1-group-code'><code>Create A New Group [POST - /api/v1/group]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn Python"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We teach python!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"initialGroupMembers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"toria"</span><span class="p">,</span><span class="w"> </span><span class="s2">"jide"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles creating a new group and adding new users to the group at the point of creating the group</p>
+
+<p><strong><code>Status Code [201]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"New group created successfully."</span><span class="p">,</span><span class="w">
+  </span><span class="err">newGroup</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn Python"</span><span class="p">,</span><span class="w">
+    </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"We teach python!"</span><span class="p">,</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+    </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='other-group-endpoints'>Other Group Endpoints</h2>
+<aside class="notice">
+<b>Note:</b> Provision were made for the following <b>group endpoints</b> but were not implemented in the client-side for this sprint/ version
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<h2 id='code-get-one-group-to-edit-get-api-v1-group-id-edit-code'><code>Get One Group To Edit [GET - /api/v1/group/:id/edit]</code></h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful."</span><span class="p">,</span><span class="w">
+  </span><span class="err">foundGroup</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn Python"</span><span class="p">,</span><span class="w">
+    </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"We teach python!"</span><span class="p">,</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+    </span><span class="err">UserId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint handles fetching a group data for editing</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='code-update-one-group-put-api-v1-group-id-edit-code'><code>Update One Group [PUT - /api/v1/group/:id/edit]</code></h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Request Body</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Learn Pythonic- Python"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>This endpoint handles updating a group&#39;s details</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group details updated successfully."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-delete-a-group-delete-api-v1-group-id-delete-code'><code>Delete A Group [DELETE - /api/v1/group/:id/delete]</code></h2>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group deleted successfully."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles deleting a group along with it&#39;s messages and users</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='message-endpoints'>Message Endpoints</h2><h2 id='code-get-one-group-and-it-39-s-messages-get-api-v1-group-id-messages-code'><code>Get One Group And It&#39;s Messages [GET - /api/v1/group/:id/messages]</code></h2>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successful."</span><span class="p">,</span><span class="w">
+  </span><span class="err">foundGroupAndMessages</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Group"</span><span class="p">,</span><span class="w">
+    </span><span class="err">description</span><span class="p">:</span><span class="w"> </span><span class="s2">"It's a new group"</span><span class="p">,</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+    </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+    </span><span class="err">Users</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="err">GroupId</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+      </span><span class="err">message</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World!"</span><span class="p">,</span><span class="w">
+      </span><span class="err">priority</span><span class="p">:</span><span class="w"> </span><span class="s2">"Normal"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+      </span><span class="err">GroupId</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+      </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+      </span><span class="err">message</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to this group!"</span><span class="p">,</span><span class="w">
+      </span><span class="err">priority</span><span class="p">:</span><span class="w"> </span><span class="s2">"Urgent"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles getting one group and all it&#39;s messages. It accepts a query parameter <code>?archived=false</code> to retrieve only messages that have not been archived and <code>?archived=true</code> to retrieve only messages that have been archived</p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+<h2 id='code-create-a-new-message-post-api-v1-group-id-message-code'><code>Create A New Message [POST - /api/v1/group/:id/message]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to this group"</span><span class="w">
+  </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Critical"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint handles posting (creating) a new message to a group, if you are a member of the group</p>
+
+<p><strong><code>Status Code [201]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"New message added successfully."</span><span class="p">,</span><span class="w">
+  </span><span class="err">createdMessage</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+    </span><span class="err">GroupId</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+    </span><span class="err">ownerId</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+    </span><span class="err">createdAt</span><span class="p">:</span><span class="w"> </span><span class="s2">"017-09-10T16:29:08.087Z"</span><span class="p">,</span><span class="w">
+    </span><span class="err">message</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to this group!"</span><span class="p">,</span><span class="w">
+    </span><span class="err">priority</span><span class="p">:</span><span class="w"> </span><span class="s2">"Urgent"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='code-archive-all-messages-put-api-v1-group-id-archivemessages-code'><code>Archive All Messages [PUT - /api/v1/group/:id/archivemessages]</code></h2>
+<blockquote>
+<p>Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"messageIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This method handles archiving all the messages in a group </p>
+
+<p><strong><code>Status Code [200]</code></strong></p>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Messages have been archived successfully"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='error-codes'>Error Codes</h1>
+<p>POST-It App uses the following error codes:</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
+<th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks</td>
+<td>Bad Request -- Request data is invalid.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong</td>
+<td>Unauthorized -- User was not authorized successfully, e.g during login, or token verification failed.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only</td>
+<td>Forbidden -- This request can be performed only by the group admin.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Not Found -- The specified request was not found.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Internal Server Error -- A problem occured with our server. Try again later.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
