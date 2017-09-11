@@ -304,6 +304,9 @@
                   <li>
                     <a href="#code-archive-all-messages-put-api-v1-group-id-archivemessages-code" class="toc-h2 toc-link" data-title="Endpoints Breakdown"><code>Archive All Messages [PUT - /api/v1/group/:id/archivemessages]</code></a>
                   </li>
+                  <li>
+                    <a href="#note" class="toc-h2 toc-link" data-title="Endpoints Breakdown">Note</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -789,7 +792,20 @@ You can login with either username or email</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="err">success</span><span class="p">:</span><span class="w"> </span><span class="s2">"Messages have been archived successfully"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='error-codes'>Error Codes</h1>
+</span></code></pre><h2 id='note'>Note</h2>
+<aside class="notice">
+In using this endpoints, the following should be noted: <br>
+<ul>
+  <li> An authorization header needs to be attached when using users, groups and messages endpoints and including when verifying user. The format is:
+  <b><i>{ Authorization: "Bearer `${token}` }</i></b></li>
+  <li> You can only add users to a group you created</li>
+  <li> You can only update your own user details</li>
+  <li> You can only archive messages in a group you created</li>
+  <li> You can only edit a group you created</li>
+  <li> You can only delete a group you created</li>
+</ul>
+</aside>
+<h1 id='error-codes'>Error Codes</h1>
 <p>POST-It App uses the following error codes:</p>
 
 <table><thead>
