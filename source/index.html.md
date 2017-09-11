@@ -29,7 +29,7 @@ It has the following features:
 * Post messages in member groups in real-time
 * Upload profile pictures
 * Archive Messages and view Archived messages
-* Recieve in-app, email and sms notification when a message is posted in the group you belong to, based on the message's priority level
+* Recieve in-app, email and sms notification when a message is posted in the group you belong to, based on the message's priority level. The different priority levels are `Normal`, `Urgent`, `Critical`
 
 # Installation and Setup
 
