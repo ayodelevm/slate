@@ -9,4 +9,5 @@ Code | Meaning
 401 | Unauthorized -- User was not authorized successfully, e.g during login, or token verification failed.
 403 | Forbidden -- This request can be performed only by the group admin.
 404 | Not Found -- The specified request was not found.
+409 | CONFLICT -- The specified request already exists or conflicts with an existing parameter.
 500 | Internal Server Error -- A problem occured with our server. Try again later.
