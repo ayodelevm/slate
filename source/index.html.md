@@ -53,9 +53,7 @@ It has the following features:
 * Change database config variables in the config.json file, based on your own db set-up
 * In other to interact effectively with endpoints, install and use __Postman__
 
-# Endpoints Breakdown
-
-## Authentication Endpoints
+# Authentication Endpoints
 
 ## `Sign-up [POST - /api/v1/user/register]`
 > Request Body
@@ -214,7 +212,7 @@ Upon browser refresh, or re-opening of the page, this endpoint verifies if the u
 }
 ```
 
-## User Endpoints
+# User Endpoints
 
 ## `Get All Registered Users [GET - /api/v1/users]`
 > Sample Response
@@ -334,7 +332,7 @@ This endpoint handles updating a user's data. Used specifically in this project 
 }
 ```
 
-## Group Endpoints
+# Group Endpoints
 
 ## `Get One User And All His Groups [GET - /api/v1/groups]`
 > Sample Response
@@ -460,7 +458,7 @@ This endpoint handles deleting a group along with it's messages and users
 
 **`Status Code [200]`**
 
-## Message Endpoints
+# Message Endpoints
 
 ## `Get One Group And It's Messages [GET - /api/v1/group/:id/messages]`
 > Sample Response
