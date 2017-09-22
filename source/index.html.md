@@ -71,7 +71,7 @@ It has the following features:
 
 This endpoint creates a new user
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -94,7 +94,7 @@ This endpoint creates a new user
 This endpoint verifies if a user is registered and then logs the user if verified or throws the appropriate error if not verified.
 You can login with either username or email
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
@@ -115,7 +115,7 @@ You can login with either username or email
 
 This endpoint handles verifying that a user who wants to reset password is registered and then sends a reset password link to the users email
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
@@ -137,7 +137,7 @@ This endpoint handles verifying that a user who wants to reset password is regis
 
 Upon reception of an email to reset password, this method receives the new password entered by the user and replaces the user's old password with the nnew one
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -158,7 +158,7 @@ Upon reception of an email to reset password, this method receives the new passw
 
 Upon verification of user's email by google, this endpoint receives the user's `id_token` issued by google, verifies the token and decodes it, checks if the user has previously signed-up with google in the past, if not, it saves the users detail into db including the user's unique `subject id` and then generates a new token for the user, if yes, sends an error message teeling the user he's signed-up before and asking the user to sign-in with google instead
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -179,7 +179,7 @@ Upon verification of user's email by google, this endpoint receives the user's `
 
 Upon verification of user's email by google, this endpoint recevies the user's `id_token` issued by google, verifies the token and decodes it, checks if the user is registered in the database, if yes, generates a new token for the user, if not, generates an error and tells the user to signup with google first
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
@@ -201,7 +201,7 @@ Upon verification of user's email by google, this endpoint recevies the user's `
 Upon browser refresh, or re-opening of the page, this endpoint verifies if the user's token is still valid if not, an error response is generated
 
 
-**`Status Code [200]`**
+**`onSUccess - Status Code [200]`**
 
 > Sample Response
 
@@ -240,7 +240,7 @@ Upon browser refresh, or re-opening of the page, this endpoint verifies if the u
 
 This endpoint fetches all registered users
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 ## `Get Group Members [GET - /api/v1/group/:id/users]`
 > Sample Response
@@ -248,7 +248,7 @@ This endpoint fetches all registered users
 ```json
 {
   success: "Successful.",
-  foundGroupAndUsers: {
+  foundUsers: {
     name: "New Group",
     description: "It's a new group",
     id: "7",
@@ -276,21 +276,21 @@ This endpoint fetches all registered users
 This endpoint fetches a group and all it's members
 
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 ## `Add New Users To Group [POST - /api/v1/group/:id/user]`
 > Request Body
 
 ```json
 {
-  "newGroupMembers": ["jide", "toria"]
+  "members": ["jide", "toria"]
 }
 ```
 
 This endpoint handles adding new users to a group
 
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -311,7 +311,7 @@ This endpoint handles adding new users to a group
 }
 ```
 
-## `Update User Details [PUT - /api/v1/user/:id/edit]`
+## `Upload Profile Picture [PUT - /api/v1/user/:id/edit]`
 > Request body
 
 ```json
@@ -320,9 +320,9 @@ This endpoint handles adding new users to a group
 }
 ```
 
-This endpoint handles updating a user's data. Used specifically in this project for handling uploading a new profile picture
+This endpoint handles uploading a new profile picture. It can be extended for updating users details
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
@@ -340,7 +340,7 @@ This endpoint handles updating a user's data. Used specifically in this project 
 ```json
 {
   success: 'Successful.',
-  foundUserAndGroups: {
+  foundGroups: {
     id: "2"
     username: "toria",
     profileImage: "https://www.conncoll.edu/media/major-images/Art.jpg",
@@ -366,7 +366,7 @@ This endpoint handles updating a user's data. Used specifically in this project 
 
 This endpoint fetches one user and all the group he belongs to
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 ## `Create A New Group [POST - /api/v1/group]`
 > Request Body
@@ -375,13 +375,13 @@ This endpoint fetches one user and all the group he belongs to
 {
   "name": "Learn Python",
   "description": "We teach python!",
-  "initialGroupMembers": ["toria", "jide"]
+  "members": ["toria", "jide"]
 }
 ```
 
 This endpoint handles creating a new group and adding new users to the group at the point of creating the group
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -422,7 +422,7 @@ This endpoint handles creating a new group and adding new users to the group at 
 
 This endpoint handles fetching a group data for editing
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 ## `Update One Group [PUT - /api/v1/group/:id/edit]`
 > Request Body
@@ -435,7 +435,7 @@ This endpoint handles fetching a group data for editing
 
 This endpoint handles updating a group's details
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
@@ -456,7 +456,7 @@ This endpoint handles updating a group's details
 
 This endpoint handles deleting a group along with it's messages and users
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 # Message Endpoints
 
@@ -466,7 +466,7 @@ This endpoint handles deleting a group along with it's messages and users
 ```json
 {
   success: "Successful.",
-  foundGroupAndMessages: {
+  foundMessages: {
     name: "New Group",
     description: "It's a new group",
     id: "7",
@@ -493,7 +493,7 @@ This endpoint handles deleting a group along with it's messages and users
 
 This endpoint handles getting one group and all it's messages. It accepts a query parameter `?archived=false` to retrieve only messages that have not been archived and `?archived=true` to retrieve only messages that have been archived
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 
 ## `Create A New Message [POST - /api/v1/group/:id/message]`
@@ -508,7 +508,7 @@ This endpoint handles getting one group and all it's messages. It accepts a quer
 
 This endpoint handles posting (creating) a new message to a group, if you are a member of the group
 
-**`Status Code [201]`**
+**`onSuccess - Status Code [201]`**
 
 > Sample Response
 
@@ -537,7 +537,7 @@ This endpoint handles posting (creating) a new message to a group, if you are a 
 
 This method handles archiving all the messages in a group 
 
-**`Status Code [200]`**
+**`onSuccess - Status Code [200]`**
 
 > Sample Response
 
