@@ -1,12 +1,12 @@
 ---
-title: POST-It App
+title: Arvofinance
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href="#">Sign Up for a Developer Key</a>
+  - <a href="https://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -16,20 +16,7 @@ search: true
 
 # Introduction
 
-**`PostIt`** is a simple application that allows friends and colleagues create groups for notifications. It allows a person post notifications to everyone in his group by sending a message once.
-It has the following features:
-
-* Creating of an account
-* Signing in a registerd user
-* Sign-up and Sign-in through google authentication
-* Reset password
-* Create Groups and be added to groups by other users
-* Add users to the group
-* View group members
-* Post messages in member groups in real-time
-* Upload profile pictures
-* Archive Messages and view Archived messages
-* Recieve in-app, email and sms notification when a message is posted in the group you belong to, based on the message's priority level. The different priority levels are `Normal`, `Urgent`, `Critical`
+**`Arvofinance`** a loan disbursment platform. Here"s the list of the breakdown of the Api"s for the platform:
 
 # Installation and Setup
 
@@ -37,14 +24,14 @@ It has the following features:
 
 **`Using SSH:`**
 
-`git clone git@github.com:ayodelevm/PostIt.git`
+`git clone git@github.com:ayodelevm/slate.git`
 
 **`Using HTTPS:`**
 
-`git clone https://github.com/ayodelevm/PostIt.git`
+`git clone https://github.com/ayodelevm/slate.git`
 
-*  Navigate to the repo's folder on your computer `cd PostIt/`
-* Install the app's backend dependencies using `npm install`
+*  Navigate to the repo"s folder on your computer `cd arvofinance-api/`
+* Install the app"s backend dependencies using `npm install`
 
 ## System Requirements to Note
 * In order to begin using, you need to have __nodeJs__ and **npm** installed on your system.
@@ -53,23 +40,23 @@ It has the following features:
 * Change database config variables in the config.json file, based on your own db set-up
 * In other to interact effectively with endpoints, install and use __Postman__
 
-# Authentication Endpoints
+# Customer Endpoints
 
-## `Sign-up [POST - /api/v1/user/register]`
+## `Sign-up [POST - /api/v1/customer/signup]`
 > Request Body
 
 ```json
 {
-  "fullname": "Toria Tobias",
-  "username": "toria",
+  "firstName": "Toria Tobias",
+  "lastName": "toria",
   "password": "ay324ab",
-  "passwordConfirmation": "ay324ab",
-  "email": "ay@gmail.com",
-  "telephone": "08087584922",
+  "confirmPassword": "ay324ab",
+  "email": "name@mail.com",
+  "telephone": "08087583456",
 }
 ```
 
-This endpoint creates a new user
+This endpoint creates a new individual customer
 
 **`onSuccess - Status Code [201]`**
 
@@ -77,22 +64,122 @@ This endpoint creates a new user
 
 ```json
 {
-  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+  "data": {
+    "id": "A7BNKDS87KIHSL",
+    "email": "name@mail.com"
+  },
+  "message": "Check your phone or email for otp",
+  "success": true
 }
 ```
 
-## `Login [POST - /api/v1/user/login]`
+## `Verify-OTP [POST - /api/v1/customer/verifyotp?email="name@mail.com"&id="A7BNKDS87KIHSL"]`
 > Request Body
 
 ```json
 {
-  "userIdentifier": "toria" or "ay@gmail.com",
+  "token": "456789",
+  "success": true
+}
+```
+
+This endpoint sends an OTP token to the customers phone number and email after signup
+
+**`onSuccess - Status Code [200]`**
+
+> Sample Response
+
+```json
+{
+  "user": {
+    "id": "A7BNKDS87KIHSL",
+    "email": "name@mail.com"
+    ...
+  },
+  "token": "Xtydsj8fDSHJFfs.Hhhsjhwyi99eb.JGJDs0djwjfc2",
+  "success": true
+}
+```
+
+## `Resend-OTP [GET - /api/v1/customer/resendotp]`
+> Response Body
+
+```json
+{
+  "token": "456789",
+  "success": true
+}
+```
+
+This endpoint sends an OTP token to the customers phone number and email after signup
+
+**`onSuccess - Status Code [200]`**
+
+
+## `Login [POST - /api/v1/customer/login]`
+> Request Body
+
+```json
+{
+  "email": "toria" or "ay@gmail.com",
+  "phoneDigits" "3456",
   "password": "ay324ab"
 }
 ```
 
-This endpoint verifies if a user is registered and then logs the user if verified or throws the appropriate error if not verified.
-You can login with either username or email
+This endpoint verifies if a customer is registered and then logs the customer if verified or throws the appropriate error if not verified.
+N.B: If the
+
+**`onSuccess - Status Code [200]`**
+
+> Sample Response (Application Not Complete)
+
+```json
+{
+  "user": {
+    "id": "A7BNKDS87KIHSL",
+    "email": "name@mail.com"
+    ...
+  },
+  "token": "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo",
+  "success": true
+}
+```
+
+> Sample Response (Application Complete)
+
+```json
+{
+  "data": {
+    "id": "A7BNKDS87KIHSL",
+    "email": "name@mail.com"
+  },
+  "message": "Check your phone or email for otp",
+  "success": true
+}
+```
+
+## `Save Personal Details [PUT - /api/v1/customer/savepersonaldetails]`
+> Request Body
+
+```json
+{
+   "title": "tope",
+   "gender": "female",
+   "surname": "Ogunlade",
+   "firstName": "Iyanu",
+   "otherNames": "Tunde",
+   "dateOfBirth": "12-may-2000",
+   "maritalStatus": "Single",
+   "telephone": "09043894345",
+   "personalEmail": "titi@mail.com",
+   "homeAddress": "2, tokunbo street, Lagos",
+   "state": "Oyo",
+   "lga": "Ibadan"
+}
+```
+
+This endpoint handles updating a users personal details
 
 **`onSuccess - Status Code [200]`**
 
@@ -100,42 +187,32 @@ You can login with either username or email
 
 ```json
 {
-  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
+  "message": "record updated succesfully!",
+  "success": true
 }
 ```
 
-## `Forgot Password [POST - /api/v1/user/forgotpassword]`
+## `Create/ Update Employment Record [POST - /api/v1/customer/createemploymentrecord]`
 > Request Body
 
 ```json
 {
-  "email": "ay@gmail.com"
+  "employmentStatus": "employed",
+  "occupation": "teaching",
+  "designation": "",
+  "employerName": "Ibim Securities",
+  "timeInCurrentEmployment": "6", //In months
+  "officeEmail": "tunde@ibimsecuritiescom",
+  "officeAddress": "3, Kosofe, Lagos",
+  "officeState": "Lagos",
+  "officeLga": "Kosofe",
+  "jobsInLastFiveMonths": 2,
+  "netMonthlyIncome": "80,000",
+  "extraIncomeSource": "Yes"
 }
 ```
 
-This endpoint handles verifying that a user who wants to reset password is registered and then sends a reset password link to the users email
-
-**`onSuccess - Status Code [200]`**
-
-> Sample Response
-
-```json
-{
-  success: "Please check your mail for the reset link!"
-}
-```
-
-## `Reset Password [PUT - /api/v1/resetpassword]`
-> Request Body
-
-```json
-{
-  "password": "newpassword"
-  "passwordConfirmation": "newpassword"
-}
-```
-
-Upon reception of an email to reset password, this method receives the new password entered by the user and replaces the user's old password with the nnew one
+This endpoint handles creating a new employment record for customer if not exists or updating an existing one
 
 **`onSuccess - Status Code [201]`**
 
@@ -143,11 +220,60 @@ Upon reception of an email to reset password, this method receives the new passw
 
 ```json
 {
-  success: "password reset successful, Please login to continue!"
+  "employmentRecord": {
+    "employmentStatus": "employed",
+    "occupation": "teaching",
+    ...
+  },
+  "success": true
 }
 ```
 
-## `Google Signup [POST - /api/v1/user/googlesignup]`
+## `Request Loan/ Update Loan Request [POST - /api/v1/customer/requestloan]`
+> Request Body
+
+```json
+{
+  "loanType": "payday loan",
+  "loanAmount": 20000,
+  "loanPurpose": "Personal",
+  "loanTenor": "4", //In months
+  "modeOfRepayment": "Direct debit",
+  "existingLoans": true,
+  "bvn": "09855479294",
+  "accountName": "Tope Ogunlade",
+  "accountNumber": "64873492",
+  "bank": "Union Bank",
+  "typeOfAccount": "savings",
+  "creditAmount": 19400,
+  "capitalRepayment": 30000,
+  "interestRepayment": 6000,
+  "monthlyRepayment": 9000,
+  "totalRepayment": 36000,
+  "interestOnLoan": 4 //In percentage
+}
+```
+
+Endpoint handles creating and updating record for a loan request.
+N.B. A customer can only update a loan request that is still pending and a customer can have only one active loan at a time. Once a loan has been approved, the customer can no longer update it neither can he request another loan until he has paid off the current loan
+
+**`onSuccess - Status Code [201]`**
+
+> Sample Response
+
+```json
+{
+  "loanRequest": {
+    "loanType": "payday loan",
+    "loanAmount": 20000,
+    "loanPurpose": "Personal",
+    ...
+  },
+  "success": true
+}
+```
+
+## `Add Uploads [POST - /api/v1/customer/adduploads]`
 > Request Body
 
 ```json
@@ -156,28 +282,7 @@ Upon reception of an email to reset password, this method receives the new passw
 }
 ```
 
-Upon verification of user's email by google, this endpoint receives the user's `id_token` issued by google, verifies the token and decodes it, checks if the user has previously signed-up with google in the past, if not, it saves the users detail into db including the user's unique `subject id` and then generates a new token for the user, if yes, sends an error message teeling the user he's signed-up before and asking the user to sign-in with google instead
-
-**`onSuccess - Status Code [201]`**
-
-> Sample Response
-
-```json
-{
-  token: "kfjbHJKD787ygiduewedykdubc8ebwu.Yjgkcdveucvo"
-}
-```
-
-## `Google Sign-in [POST - /api/v1/user/googlelogin]`
-> Request Body
-
-```json
-{
-  "id_token": "CDjdljdf8yg8ge092874hikudjlcedcUIYHCG.78ghGKcjdsgkj"
-}
-```
-
-Upon verification of user's email by google, this endpoint recevies the user's `id_token` issued by google, verifies the token and decodes it, checks if the user is registered in the database, if yes, generates a new token for the user, if not, generates an error and tells the user to signup with google first
+Upon verification of user"s email by google, this endpoint recevies the user"s `id_token` issued by google, verifies the token and decodes it, checks if the user is registered in the database, if yes, generates a new token for the user, if not, generates an error and tells the user to signup with google first
 
 **`onSuccess - Status Code [200]`**
 
@@ -198,7 +303,7 @@ Upon verification of user's email by google, this endpoint recevies the user's `
 }
 ```
 
-Upon browser refresh, or re-opening of the page, this endpoint verifies if the user's token is still valid if not, an error response is generated
+Upon browser refresh, or re-opening of the page, this endpoint verifies if the user"s token is still valid if not, an error response is generated
 
 
 **`onSUccess - Status Code [200]`**
@@ -250,7 +355,7 @@ This endpoint fetches all registered users
   success: "Successful.",
   foundUsers: {
     name: "New Group",
-    description: "It's a new group",
+    description: "It"s a new group",
     id: "7",
     ownerId: "4",
     createdAt: "017-09-10T16:29:08.087Z",
@@ -273,7 +378,7 @@ This endpoint fetches all registered users
 }
 ```
 
-This endpoint fetches a group and all it's members
+This endpoint fetches a group and all it"s members
 
 
 **`onSuccess - Status Code [200]`**
@@ -339,7 +444,7 @@ This endpoint handles uploading a new profile picture. It can be extended for up
 
 ```json
 {
-  success: 'Successful.',
+  success: "Successful.",
   foundGroups: {
     id: "2"
     username: "toria",
@@ -349,7 +454,7 @@ This endpoint handles uploading a new profile picture. It can be extended for up
     telephone: "08087584922",
     Groups: [{
       name: "New Group",
-      description: "It's a new group",
+      description: "It"s a new group",
       id: "7",
       ownerId: "4",
       createdAt: "017-09-10T16:29:08.087Z",
@@ -433,7 +538,7 @@ This endpoint handles fetching a group data for editing
 }
 ```
 
-This endpoint handles updating a group's details
+This endpoint handles updating a group"s details
 
 **`onSuccess - Status Code [200]`**
 
@@ -454,13 +559,13 @@ This endpoint handles updating a group's details
 }
 ```
 
-This endpoint handles deleting a group along with it's messages and users
+This endpoint handles deleting a group along with it"s messages and users
 
 **`onSuccess - Status Code [200]`**
 
 # Message Endpoints
 
-## `Get One Group And It's Messages [GET - /api/v1/group/:id/messages]`
+## `Get One Group And It"s Messages [GET - /api/v1/group/:id/messages]`
 > Sample Response
 
 ```json
@@ -468,7 +573,7 @@ This endpoint handles deleting a group along with it's messages and users
   success: "Successful.",
   foundMessages: {
     name: "New Group",
-    description: "It's a new group",
+    description: "It"s a new group",
     id: "7",
     ownerId: "4",
     createdAt: "017-09-10T16:29:08.087Z",
@@ -491,7 +596,7 @@ This endpoint handles deleting a group along with it's messages and users
 }
 ```
 
-This endpoint handles getting one group and all it's messages. It accepts a query parameter `?archived=false` to retrieve only messages that have not been archived and `?archived=true` to retrieve only messages that have been archived
+This endpoint handles getting one group and all it"s messages. It accepts a query parameter `?archived=false` to retrieve only messages that have not been archived and `?archived=true` to retrieve only messages that have been archived
 
 **`onSuccess - Status Code [200]`**
 
